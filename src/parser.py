@@ -45,3 +45,7 @@ class Parser:
 
         except Exception as e:
             raise RuntimeError(f"Ошибка при разборе {self.file_name}: {e}")
+    
+    def makeLetter(self):
+        letter = Letter(self.receiver, self.sender, self.date, self.subject, self.main_body, self.file_name)
+        self.letter = letter
