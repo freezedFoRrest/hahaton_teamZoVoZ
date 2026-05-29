@@ -1,12 +1,13 @@
 from pathlib import Path
-# from parser import Parser
+from parser import Parser
 
 
 class Processor:
-    def __init__(self):
-        pass
 
+
+    @staticmethod
     def read_directory(inbox_directory):
+        result = []
         current_parser = None
         for letter in inbox_directory.iterdir():
             if letter.suffix == ".txt":
@@ -17,5 +18,6 @@ class Processor:
                 current_parser = Parser(letter, 'jpeg')
             if letter.suffix == ".bin":
                 current_parser = Parser(letter, 'bin')
-            result = current_parser.parse()
-            return result
+            file, folder = current_parser.parse()
+            result.append((file,folder))
+        return result
